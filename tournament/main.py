@@ -20,7 +20,7 @@ def display_menu() -> None:
     """Print the interactive command-line menu options."""
     user_badge = f"{current_user.get('name') or 'Guest'} ({current_user.get('role') or 'Not logged in'})"
     print("\n" + "=" * 50)
-    print(f"🏆 TOURNAMENT MANAGEMENT SYSTEM [User: {user_badge}]")
+    print(f"TOURNAMENT MANAGEMENT SYSTEM [User: {user_badge}]")
     print("=" * 50)
     print(" 1. Login")
     print(" 2. Register")
