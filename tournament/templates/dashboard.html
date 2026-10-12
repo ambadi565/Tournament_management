@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="panel">
+    <h2>Tournament Dashboard</h2>
+    <p>Welcome, <strong>{{ session.get('username') }}</strong>. Current system overview and key tournament statistics:</p>
+
+    <div class="stats">
+        <div class="stat-card">
+            <span class="stat-number">{{ stats.players }}</span>
+            <span class="stat-label">Total Players</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">{{ stats.teams }}</span>
+            <span class="stat-label">Franchise Teams</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">{{ stats.matches_played }}</span>
+            <span class="stat-label">Matches Played</span>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Quick Navigation</h3>
+    <div class="quick-links">
+        <a href="{{ url_for('player_list') }}" class="button">Manage Players</a>
+        <a href="{{ url_for('team_list') }}" class="button">Manage Teams</a>
+        <a href="{{ url_for('auction_view') }}" class="button">Auction Arena</a>
+        <a href="{{ url_for('match_list') }}" class="button">View Fixtures</a>
+        <a href="{{ url_for('standings_view') }}" class="button">Points Table</a>
+        <a href="{{ url_for('reports_view') }}" class="button">Download Reports</a>
+    </div>
+</div>
+{% endblock %}

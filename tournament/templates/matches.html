@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="panel">
+    <h2>Match Fixtures & Results</h2>
+    <p>View tournament schedule and record completed fixture results.</p>
+</div>
+
+{% if session.get('role') == 'admin' %}
+<div class="card">
+    <h3>Generate Round-Robin Fixtures (Admin Only)</h3>
+    <p>Automatically generate all pairwise match pairings scheduled across consecutive days.</p>
+    <form action="{{ url_for('match_generate') }}" method="POST">
+        <button type="submit" class="button">Generate Fixture Schedule</button>
+    </form>
+</div>
+{% endif %}
+
+<div class="card">
+    <h3>All Fixtures</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Fixture</th>
+                <th>Scheduled Date</th>
+                <th>Status</th>
+                <th>Score</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in matches %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><strong>{{ m[1] }}</strong> vs <strong>{{ m[2] }}</strong></td>
+                <td>{{ m[3] }}</td>
+                <td>
+                    {% if m[6] %}
+                        <span class="badge badge-sold">Completed</span>
+                    {% else %}
+                        <span class="badge badge-unsold">Upcoming</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if m[6] %}
+                        <strong>{{ m[4] }} - {{ m[5] }}</strong>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>
+                    {% if not m[6] %}
+                    <form action="{{ url_for('match_result', match_id=m[0]) }}" method="POST" class="score-form">
+                        <input type="number" name="score1" min="0" placeholder="{{ m[1] }}" required class="score-input">
+                        <span>-</span>
+                        <input type="number" name="score2" min="0" placeholder="{{ m[2] }}" required class="score-input">
+                        <button type="submit" class="button btn-sm">Save</button>
+                    </form>
+                    {% else %}
+                        <span class="text-muted">Result Finalized</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center">No fixtures scheduled yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

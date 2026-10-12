@@ -1,0 +1,136 @@
+{
+    "teams": [
+        {
+            "id": 1,
+            "name": "Titan Warriors",
+            "owner": "Titan Corp",
+            "purse": 1000,
+            "max_players": 11
+        },
+        {
+            "id": 2,
+            "name": "Royal Strikers",
+            "owner": "Royal Club",
+            "purse": 900,
+            "max_players": 11
+        },
+        {
+            "id": 3,
+            "name": "Blaze Dynamos",
+            "owner": "Blaze Ventures",
+            "purse": 800,
+            "max_players": 11
+        }
+    ],
+    "players": [
+        {
+            "id": 1,
+            "name": "Alex Mercer",
+            "role": "Batsman",
+            "base_price": 60,
+            "sold_to": null,
+            "price": 0
+        },
+        {
+            "id": 2,
+            "name": "Marcus Sterling",
+            "role": "Bowler",
+            "base_price": 50,
+            "sold_to": null,
+            "price": 0
+        },
+        {
+            "id": 3,
+            "name": "Jordan Vance",
+            "role": "All-Rounder",
+            "base_price": 75,
+            "sold_to": null,
+            "price": 0
+        },
+        {
+            "id": 4,
+            "name": "Liam O'Connor",
+            "role": "Wicket-Keeper",
+            "base_price": 45,
+            "sold_to": null,
+            "price": 0
+        },
+        {
+            "id": 5,
+            "name": "Devon Harris",
+            "role": "Batsman",
+            "base_price": 55,
+            "sold_to": null,
+            "price": 0
+        },
+        {
+            "id": 6,
+            "name": "Ravi Patel",
+            "role": "Bowler",
+            "base_price": 50,
+            "sold_to": null,
+            "price": 0
+        },
+        {
+            "id": 7,
+            "name": "Elena Rostova",
+            "role": "All-Rounder",
+            "base_price": 80,
+            "sold_to": null,
+            "price": 0
+        },
+        {
+            "id": 8,
+            "name": "Samir Khan",
+            "role": "Batsman",
+            "base_price": 40,
+            "sold_to": null,
+            "price": 0
+        }
+    ],
+    "matches": [
+        {
+            "id": 1,
+            "team1_id": 1,
+            "team2_id": 3,
+            "match_date": "2026-10-13 20:51",
+            "score1": 3,
+            "score2": 1,
+            "played": 1
+        },
+        {
+            "id": 2,
+            "team1_id": 2,
+            "team2_id": 3,
+            "match_date": "2026-10-14 20:51",
+            "score1": 0,
+            "score2": 0,
+            "played": 0
+        },
+        {
+            "id": 3,
+            "team1_id": 1,
+            "team2_id": 2,
+            "match_date": "2026-10-15 20:51",
+            "score1": 0,
+            "score2": 0,
+            "played": 0
+        }
+    ],
+    "points_table": [
+        {
+            "team": "Titan Warriors",
+            "played": 1,
+            "won": 1,
+            "drawn": 0,
+            "points": 3
+        },
+        {
+            "team": "Blaze Dynamos",
+            "played": 1,
+            "won": 0,
+            "drawn": 0,
+            "points": 0
+        }
+    ]
+}

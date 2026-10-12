@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="panel">
+    <h2>Reports & Data Export</h2>
+    <p>Generate and download comprehensive data exports in JSON and CSV formats.</p>
+</div>
+
+<div class="reports-grid">
+    <div class="card">
+        <h3>Generate Export Files</h3>
+        <p>Trigger fresh serialization of all tournament teams, players, matches, and current standings.</p>
+        <form action="{{ url_for('reports_export') }}" method="POST">
+            <button type="submit" class="button">Generate Reports Now</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h3>Download Available Reports</h3>
+        <p>Retrieve downloaded files locally:</p>
+        <div class="download-links">
+            <a href="{{ url_for('reports_download', kind='json') }}" class="button btn-download">
+                📄 Download report.json (Full State)
+            </a>
+            <a href="{{ url_for('reports_download', kind='csv') }}" class="button btn-download">
+                📊 Download points.csv (Standings)
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

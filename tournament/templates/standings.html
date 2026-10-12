@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="panel">
+    <h2>Points Table & Standings</h2>
+    <p>Official tournament rankings calculated from completed fixtures via aggregate SQL and Python ranking.</p>
+</div>
+
+<div class="card">
+    <table class="table standings-table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>Played (P)</th>
+                <th>Won (W)</th>
+                <th>Drawn (D)</th>
+                <th>Points (Pts)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table %}
+            <tr class="{% if loop.index == 1 %}leader-row{% endif %}">
+                <td><strong>#{{ loop.index }}</strong></td>
+                <td><strong>{{ row[0] }}</strong></td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td><span class="pts-badge">{{ row[4] }}</span></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center">No completed matches available to compute standings.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="standings-legend">
+        <small>Scoring Rules: Win = 3 Pts | Draw = 1 Pt | Loss = 0 Pts. Ranked by Pts DESC, W DESC, Name ASC.</small>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="panel">
+    <h2>Live Auction Arena</h2>
+    <p>Place competitive bids for unsold players within franchise purse budgets.</p>
+</div>
+
+<div class="auction-grid">
+    <div class="card auction-active">
+        <h3>Currently on Auction Block</h3>
+        {% if player %}
+            <div class="player-highlight">
+                <h4>{{ player.name }}</h4>
+                <p><strong>Role:</strong> {{ player.role }}</p>
+                <p><strong>Base Price:</strong> ${{ player.base_price }}</p>
+            </div>
+
+            <form action="{{ url_for('auction_bid') }}" method="POST" class="form">
+                <input type="hidden" name="player_id" value="{{ player.id }}">
+                <div class="form-group">
+                    <label for="team_id">Bidding Franchise Team</label>
+                    <select id="team_id" name="team_id" required>
+                        <option value="">-- Select Team --</option>
+                        {% for t in teams %}
+                            <option value="{{ t[0] }}">{{ t[1] }} (Purse: ${{ t[3] }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Bid Amount ($)</label>
+                    <input type="number" id="amount" name="amount" min="{{ player.base_price }}" value="{{ player.base_price }}" required>
+                </div>
+                <button type="submit" class="button btn-bid">Place Winning Bid</button>
+            </form>
+        {% else %}
+            <div class="all-sold-box">
+                <p>🎉 All registered players have been sold or no players remain in the auction pool.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="card auction-history">
+        <h3>Recent Auction Sales</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Player</th>
+                    <th>Acquiring Team</th>
+                    <th>Final Price</th>
+                    <th>Sold At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in recent_bids %}
+                <tr>
+                    <td><strong>{{ b[1] }}</strong></td>
+                    <td><span class="badge badge-sold">{{ b[2] }}</span></td>
+                    <td>${{ b[3] }}</td>
+                    <td>{{ b[4] }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">No sales recorded yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
